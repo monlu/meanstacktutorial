@@ -5,7 +5,7 @@ myApp.controller('AppController', ['$scope', '$http', function ($scope, $http) {
 		$http.get('/contactlist').success(function (res) {
 			console.log("i got the data")
 			$scope.contactlist = res;
-			$scope.contact + "";
+			$scope.contact = "";
 		});
 	};
 
@@ -36,7 +36,10 @@ myApp.controller('AppController', ['$scope', '$http', function ($scope, $http) {
 
 	$scope.update = function () {
 		console.log($scope.contact._id);
-		$http.put('/contactlist/' + $scope.contact._id, $scope.contact)
+		$http.put('/contactlist/' + $scope.contact._id, $scope.contact).sucess(function (res) {
+			console.log(res);
+			refresh();
+		});
 	}
 
 }])
